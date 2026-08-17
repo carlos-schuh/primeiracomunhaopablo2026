@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<link rel="stylesheet" href="style.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convite Grande Interativo 3D</title>
+</head>
+<body>
+
+    <!-- Janela de visualização grande -->
+    <div class="janela-3d">
+        <div class="envelope" id="meuEnvelope">
+            
+            <!-- Duas metades que abrem como mãos para os lados -->
+            <div class="aba aba-esquerda">
+            <h1>Minha Primeira<br>Eucaristia</h1>
+            <img class="comunhao" src="comunhao.png" alt="">
+            <h2>Pablo</h2>
+            </div>
+            <div class="aba aba-direita"><p class="texto2">Lucas 22, 19-20: "A seguir, tomou o pão, deu graças, 
+                partiu-o e o deu a eles, 
+                dizendo: 'Isto é o meu corpo dado por vós; fazei isto em memória de mim'. 
+                Do mesmo modo, depois da ceia, tomou o cálice, dizendo: 'Este cálice é a nova 
+                aliança no meu sangue, que é derramado por vós'"</p></div>
+            
+            <!-- Conteúdo interno que salta em direção à tela -->
+            <div class="carta">
+                <h1>GRANDE CELEBRAÇÃO</h1>
+                <div class="divisor"></div>
+                <img class="foto"  src="imagempablo2.jpeg" alt="">
+                <p class="texto3">Temos a honra de convidar você para <br>a minha primeira eucaristia.</p>
+                <p class="texto4"><strong>Local:</strong> R. Do Açude, São José do Maratá</p>
+                <p class="texto4"><strong>Data:</strong> 27 de Setembro de 2026</p>
+                <p class="texto4"><strong>Horário:</strong> Missa: Ás 09:00/ Festividade: Após a missa</p>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Botão de Interação -->
+    <button class="btn-abrir" id="btnAcao">Abrir Convite</button>
+
+    <script>
+        const envelope = document.getElementById('meuEnvelope');
+        const botao = document.getElementById('btnAcao');
+
+        botao.addEventListener('click', () => {
+            envelope.classList.toggle('aberto');
+            
+            if(envelope.classList.contains('aberto')) {
+                botao.textContent = 'Fechar Convite';
+            } else {
+                botao.textContent = 'Abrir Convite';
+            }
+        });
+    </script>
+
+</body>
+</html>
