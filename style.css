@@ -1,4 +1,4 @@
-      :root {
+     :root {
     --cor-envelope: #f6f1cd;
     --cor-aba-esquerda: #f6f1cd;
     --cor-aba-direita: #f6f1cd;
@@ -11,9 +11,9 @@
 }
 
 
-/* ============================= */
+/* ================================================= */
 /* CONFIGURAÇÃO GERAL */
-/* ============================= */
+/* ================================================= */
 
 * {
     box-sizing: border-box;
@@ -49,12 +49,11 @@ body {
 }
 
 
-/* ============================= */
-/* JANELA 3D */
-/* ============================= */
+/* ================================================= */
+/* JANELA DE PERSPECTIVA 3D */
+/* ================================================= */
 
 .janela-3d {
-
     perspective: 1500px;
 
     width: var(--largura-convite);
@@ -71,12 +70,11 @@ body {
 }
 
 
-/* ============================= */
-/* ENVELOPE */
-/* ============================= */
+/* ================================================= */
+/* CORPO DO ENVELOPE */
+/* ================================================= */
 
 .envelope {
-
     width: 100%;
     height: 100%;
 
@@ -95,12 +93,11 @@ body {
 }
 
 
-/* ============================= */
+/* ================================================= */
 /* ABAS */
-/* ============================= */
+/* ================================================= */
 
 .aba {
-
     position: absolute;
 
     top: 0;
@@ -122,45 +119,53 @@ body {
 }
 
 
-/* LADO ESQUERDO */
+/* ================================================= */
+/* ABA ESQUERDA */
+/* ================================================= */
 
 .aba-esquerda {
-
     left: 0;
 
     background-color: var(--cor-aba-esquerda);
 
     border-radius: 12px 0 0 12px;
 
+    /*
+    A aba dobra exatamente
+    como no computador.
+    */
     transform-origin: left center;
 
-    border-right: 1px solid white;
-
+    border-right: 1px solid rgb(255, 255, 255);
 }
 
 
-/* LADO DIREITO */
+/* ================================================= */
+/* ABA DIREITA */
+/* ================================================= */
 
 .aba-direita {
-
     right: 0;
 
     background-color: var(--cor-aba-direita);
 
     border-radius: 0 12px 12px 0;
 
+    /*
+    A aba dobra exatamente
+    como no computador.
+    */
     transform-origin: right center;
 
-    border-left: 1px solid white;
+    border-left: 1px solid rgb(255, 255, 255);
 }
 
 
-/* ============================= */
-/* LINHA DECORATIVA */
-/* ============================= */
+/* ================================================= */
+/* DETALHE VISUAL DAS ABAS */
+/* ================================================= */
 
 .aba::after {
-
     content: '';
 
     position: absolute;
@@ -184,12 +189,11 @@ body {
 }
 
 
-/* ============================= */
-/* TÍTULO DA CAPA */
-/* ============================= */
+/* ================================================= */
+/* TÍTULO DA ABA ESQUERDA */
+/* ================================================= */
 
 .aba h1 {
-
     text-align: center;
 
     margin-top: 25px;
@@ -204,12 +208,11 @@ body {
 }
 
 
-/* ============================= */
+/* ================================================= */
 /* IMAGEM DA COMUNHÃO */
-/* ============================= */
+/* ================================================= */
 
 .comunhao {
-
     display: block;
 
     width: 43%;
@@ -228,12 +231,11 @@ body {
 }
 
 
-/* ============================= */
+/* ================================================= */
 /* NOME PABLO */
-/* ============================= */
+/* ================================================= */
 
 .aba-esquerda h2 {
-
     text-align: center;
 
     margin: -20px 0 0;
@@ -246,12 +248,11 @@ body {
 }
 
 
-/* ============================= */
-/* TEXTO DA DIREITA */
-/* ============================= */
+/* ================================================= */
+/* TEXTO DA ABA DIREITA */
+/* ================================================= */
 
 .texto2 {
-
     text-align: justify;
 
     margin: 50px 30px 0;
@@ -264,12 +265,11 @@ body {
 }
 
 
-/* ============================= */
+/* ================================================= */
 /* CARTA INTERNA */
-/* ============================= */
+/* ================================================= */
 
 .carta {
-
     position: absolute;
 
     top: 5.5%;
@@ -296,6 +296,10 @@ body {
 
     padding: clamp(15px, 4vw, 40px);
 
+    /*
+    Estado inicial:
+    carta escondida atrás.
+    */
     transform:
         translateZ(-50px)
         scale(0.9);
@@ -314,13 +318,12 @@ body {
 }
 
 
-/* ============================= */
+/* ================================================= */
 /* TÍTULO DA CARTA */
-/* ============================= */
+/* ================================================= */
 
 .carta h1 {
-
-    color: #000;
+    color: #000000;
 
     font-size: clamp(18px, 4vw, 40px);
 
@@ -332,12 +335,11 @@ body {
 }
 
 
-/* ============================= */
+/* ================================================= */
 /* DIVISOR */
-/* ============================= */
+/* ================================================= */
 
 .carta .divisor {
-
     width: clamp(60px, 15vw, 100px);
 
     height: 2px;
@@ -348,12 +350,11 @@ body {
 }
 
 
-/* ============================= */
+/* ================================================= */
 /* FOTO */
-/* ============================= */
+/* ================================================= */
 
 .foto {
-
     display: block;
 
     width: clamp(65px, 12vw, 100px);
@@ -370,13 +371,12 @@ body {
 }
 
 
-/* ============================= */
-/* TEXTO PRINCIPAL */
-/* ============================= */
+/* ================================================= */
+/* TEXTO PRINCIPAL DA CARTA */
+/* ================================================= */
 
 .texto3 {
-
-    color: #000;
+    color: #000000;
 
     font-size: clamp(12px, 2vw, 20px);
 
@@ -386,13 +386,12 @@ body {
 }
 
 
-/* ============================= */
-/* INFORMAÇÕES */
-/* ============================= */
+/* ================================================= */
+/* INFORMAÇÕES DA CELEBRAÇÃO */
+/* ================================================= */
 
 .texto4 {
-
-    color: #000;
+    color: #000000;
 
     font-size: clamp(11px, 1.6vw, 17px);
 
@@ -404,24 +403,35 @@ body {
 }
 
 
-/* ============================= */
+/* ================================================= */
 /* ANIMAÇÃO DE ABERTURA */
-/* ============================= */
+/* ================================================= */
+
+/*
+    IMPORTANTE:
+
+    Aqui estão os mesmos valores
+    que você tinha originalmente.
+
+    Esquerda = -140 graus
+    Direita  = +140 graus
+*/
 
 .envelope.aberto .aba-esquerda {
-
     transform: rotateY(-140deg);
 }
 
 
 .envelope.aberto .aba-direita {
-
     transform: rotateY(140deg);
 }
 
 
-.envelope.aberto .carta {
+/*
+    Carta avança em direção ao usuário.
+*/
 
+.envelope.aberto .carta {
     transform:
         translateZ(100px)
         scale(1.02);
@@ -432,12 +442,11 @@ body {
 }
 
 
-/* ============================= */
+/* ================================================= */
 /* BOTÃO */
-/* ============================= */
+/* ================================================= */
 
 .btn-abrir {
-
     padding:
         clamp(12px, 2vw, 16px)
         clamp(25px, 5vw, 45px);
@@ -469,7 +478,6 @@ body {
 
 
 .btn-abrir:hover {
-
     background-color: #f5f6fa;
 
     color: #11141a;
@@ -482,48 +490,46 @@ body {
 
 
 .btn-abrir:active {
-
     transform: translateY(1px);
 }
 
 
 /* ================================================= */
-/* CELULAR */
+/* SMARTPHONE */
 /* ================================================= */
 
 @media (max-width: 600px) {
 
     body {
-
         justify-content: center;
 
         padding:
             20px 10px 30px;
-
     }
 
 
-    .janela-3d {
+    /*
+    O convite diminui para caber no celular,
+    mas mantém a mesma perspectiva 3D.
+    */
 
+    .janela-3d {
         width: 94vw;
 
-        /*
-        O convite continua proporcional
-        */
         aspect-ratio: 700 / 450;
 
         margin-bottom: 30px;
 
         /*
-        Reduz um pouco a perspectiva
-        para o celular
+        IMPORTANTE:
+        Mantemos 1500px, igual ao computador.
         */
-        perspective: 900px;
+
+        perspective: 1500px;
     }
 
 
     .envelope {
-
         border-radius: 8px;
 
         box-shadow:
@@ -531,20 +537,21 @@ body {
     }
 
 
-    /* CAPA ESQUERDA */
+    /* ============================================= */
+    /* CAPA ESQUERDA NO CELULAR */
+    /* ============================================= */
 
     .aba h1 {
-
         margin-top: 15px;
 
-        font-size: clamp(16px, 5vw, 25px);
+        font-size:
+            clamp(16px, 5vw, 25px);
 
         letter-spacing: 0;
     }
 
 
     .comunhao {
-
         width: 55%;
 
         margin-top: 5px;
@@ -554,17 +561,18 @@ body {
 
 
     .aba-esquerda h2 {
-
         margin-top: -5px;
 
-        font-size: clamp(20px, 6vw, 30px);
+        font-size:
+            clamp(20px, 6vw, 30px);
     }
 
 
-    /* TEXTO DA DIREITA */
+    /* ============================================= */
+    /* TEXTO DIREITO NO CELULAR */
+    /* ============================================= */
 
     .texto2 {
-
         margin:
             25px 15px 0;
 
@@ -575,14 +583,17 @@ body {
     }
 
 
-    /* CARTA */
+    /* ============================================= */
+    /* CARTA NO CELULAR */
+    /* ============================================= */
 
     .carta {
-
         top: 3%;
+
         left: 3%;
 
         width: 94%;
+
         height: 94%;
 
         padding:
@@ -596,7 +607,6 @@ body {
 
 
     .carta h1 {
-
         font-size:
             clamp(15px, 5vw, 25px);
 
@@ -605,7 +615,6 @@ body {
 
 
     .carta .divisor {
-
         margin: 8px auto;
 
         width: 50px;
@@ -613,10 +622,11 @@ body {
 
 
     .foto {
+        width:
+            clamp(45px, 15vw, 75px);
 
-        width: clamp(45px, 15vw, 75px);
-
-        height: clamp(45px, 15vw, 75px);
+        height:
+            clamp(45px, 15vw, 75px);
 
         border-width: 2px;
 
@@ -625,7 +635,6 @@ body {
 
 
     .texto3 {
-
         font-size:
             clamp(9px, 2.8vw, 14px);
 
@@ -636,7 +645,6 @@ body {
 
 
     .texto4 {
-
         font-size:
             clamp(8px, 2.4vw, 12px);
 
@@ -648,10 +656,11 @@ body {
     }
 
 
-    /* BOTÃO */
+    /* ============================================= */
+    /* BOTÃO NO CELULAR */
+    /* ============================================= */
 
     .btn-abrir {
-
         width: auto;
 
         min-width: 180px;
@@ -663,31 +672,36 @@ body {
     }
 
 
+    /* ============================================= */
+    /* ABERTURA 3D NO CELULAR */
+    /* ============================================= */
+
     /*
-    No celular a abertura fica
-    um pouco menor para não
-    sair completamente da tela.
+    AQUI ESTÁ A PRINCIPAL ALTERAÇÃO.
+
+    O celular usa exatamente a mesma
+    rotação do computador.
     */
 
     .envelope.aberto .aba-esquerda {
-
-        transform:
-            rotateY(-115deg);
+        transform: rotateY(-140deg);
     }
 
 
     .envelope.aberto .aba-direita {
-
-        transform:
-            rotateY(115deg);
+        transform: rotateY(140deg);
     }
 
 
-    .envelope.aberto .carta {
+    /*
+    A carta também avança a mesma distância
+    usada no computador.
+    */
 
+    .envelope.aberto .carta {
         transform:
-            translateZ(55px)
-            scale(1.01);
+            translateZ(100px)
+            scale(1.02);
     }
 
 }
@@ -700,15 +714,17 @@ body {
 @media (max-width: 380px) {
 
     .janela-3d {
-
         width: 96vw;
 
-        perspective: 700px;
+        /*
+        Continua com a mesma perspectiva.
+        */
+
+        perspective: 1500px;
     }
 
 
     .aba h1 {
-
         font-size: 14px;
 
         margin-top: 10px;
@@ -716,19 +732,16 @@ body {
 
 
     .comunhao {
-
         width: 50%;
     }
 
 
     .aba-esquerda h2 {
-
         font-size: 20px;
     }
 
 
     .texto2 {
-
         font-size: 8px;
 
         margin:
@@ -737,26 +750,22 @@ body {
 
 
     .carta {
-
         padding:
             8px 6px;
     }
 
 
     .carta h1 {
-
         font-size: 14px;
     }
 
 
     .texto3 {
-
         font-size: 8px;
     }
 
 
     .texto4 {
-
         font-size: 7.5px;
 
         margin: 3px auto;
@@ -764,31 +773,51 @@ body {
 
 
     .btn-abrir {
-
         min-width: 160px;
 
         font-size: 14px;
+    }
+
+
+    /*
+    Mantém a abertura igual à versão desktop.
+    */
+
+    .envelope.aberto .aba-esquerda {
+        transform: rotateY(-140deg);
+    }
+
+
+    .envelope.aberto .aba-direita {
+        transform: rotateY(140deg);
+    }
+
+
+    .envelope.aberto .carta {
+        transform:
+            translateZ(100px)
+            scale(1.02);
     }
 
 }
 
 
 /* ================================================= */
-/* NOTEBOOK / TELAS MENORES */
+/* NOTEBOOK / TABLET */
 /* ================================================= */
 
 @media (min-width: 601px) and (max-width: 1100px) {
 
     .janela-3d {
-
         width: 80vw;
 
         max-width: 700px;
+
+        perspective: 1500px;
     }
 
 
     .texto2 {
-
         font-size:
             clamp(12px, 1.7vw, 18px);
     }
@@ -805,8 +834,8 @@ body {
     .aba,
     .carta,
     .btn-abrir {
-
         transition: none;
     }
 
 }
+    
