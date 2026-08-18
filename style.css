@@ -1,209 +1,812 @@
-        :root {
-            --cor-envelope: #f6f1cd;  
-            --cor-aba-esquerda: #f6f1cd; 
-            --cor-aba-direita:#f6f1cd; 
-            --cor-carta: #f6f1cd;  
-            --cor-detalhe: rgba(243, 218, 117, 0.6);  
-            --cor-botao: #9c88ff;
-        }
+      :root {
+    --cor-envelope: #f6f1cd;
+    --cor-aba-esquerda: #f6f1cd;
+    --cor-aba-direita: #f6f1cd;
+    --cor-carta: #f6f1cd;
 
-        body {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background-color: #5696a8;
-            font-family: 'Georgia', serif;
-            overflow: hidden;
-        }
+    --cor-detalhe: rgba(243, 218, 117, 0.6);
+    --cor-botao: #9c88ff;
 
-        /* Container de Perspectiva 3D Ampliado */
-        .janela-3d {
-            perspective: 1500px;
-            width: 700px; /* Tamanho Grande */
-            height: 450px;
-            margin-bottom: 40px;
-            position: relative;
-        }
+    --largura-convite: min(700px, 90vw);
+}
 
-        /* O corpo do envelope (fundo) */
-        .envelope {
-            width: 100%;
-            height: 100%;
-            background-color: var(--cor-envelope);
-            position: relative;
-            box-shadow: 0 40px 70px rgba(243, 218, 117, 0.6);
-            border-radius: 12px;
-            transform-style: preserve-3d;
-        }
 
-        /* Abas laterais que simulam a "mão" abrindo para os lados */
-        .aba {
-            position: absolute;
-            top: 0;
-            width: 50%;
-            height: 100%;
-            box-sizing: border-box;
-            transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
-            z-index: 3;
-            box-shadow: 0 0 15px rgba(0,0,0,0.3);
-        }
+/* ============================= */
+/* CONFIGURAÇÃO GERAL */
+/* ============================= */
 
-        .aba-esquerda {
-            left: 0;
-            background-color: var(--cor-aba-esquerda);
-            border-radius: 12px 0 0 12px;
-            transform-origin: left center; /* Dobra na lateral esquerda */
-            border-right: 1px solid rgb(255, 255, 255);
-        }
+* {
+    box-sizing: border-box;
+}
 
-        .aba-direita {
-            right: 0;
-            background-color: var(--cor-aba-direita);
-            border-radius: 0 12px 12px 0;
-            transform-origin: right center; /* Dobra na lateral direita */
-            border-left: 1px solid rgb(255, 255, 255);
-        }
 
-        /* Detalhe visual (linhas decorativas nas abas externas) */
-        .aba::after {
-            content: '';
-            position: absolute;
-            top: 20px;
-            bottom: 20px;
-            width: 2px;
-            background: rgba(22, 22, 22, 0.1);
-        }
-        .aba-esquerda::after { right: 20px; }
-        .aba-direita::after { left: 20px; }
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+}
 
-        /* A grande carta interna */
-        .carta {
-            position: absolute;
-            top: 25px;
-            left: 35px;
-            width: 630px;
-            height: 400px;
-            background-color: var(--cor-carta);
-            background-image: linear-gradient(rgba(240,240,240,0.5) 1px, transparent 1px);
-            background-size: 100% 30px;
-            box-shadow: inset 0 0 40px rgba(0,0,0,0.05), 0 10px 20px rgba(0,0,0,0.3);
-            border-radius: 8px;
-            padding: 40px;
-            box-sizing: border-box;
-            /* Começa oculta por trás, pequena e translúcida */
-            transform: translateZ(-50px) scale(0.9);
-            opacity: 0;
-            transition: transform 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s, opacity 0.8s ease 0.4s;
-            z-index: 1;
-            text-align: center;
-        }
 
-        /* Elementos internos da carta */
-        .carta h1 {
-            color: #000000;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
-        }
+body {
+    min-height: 100vh;
 
-        .carta .divisor {
-            width: 100px;
-            height: 2px;
-            background-color: var(--cor-detalhe);
-            margin: 20px auto;
-        }
+    display: flex;
+    flex-direction: column;
 
-        .carta p{
-            color: #000000;
-            font-size: 1.2rem;
-            line-height: 1.6;
-            margin: 10px 0;
-            
-        }
+    justify-content: center;
+    align-items: center;
 
-        /* --- ANIMAÇÕES DE ABERTURA --- */
+    background-color: #5696a8;
 
-        /* As abas abrem em 3D para fora da tela (como portas ou mãos espalmando) */
-        .envelope.aberto .aba-esquerda {
-            transform: rotateY(-140deg);
-        }
+    font-family: Georgia, serif;
 
-        .envelope.aberto .aba-direita {
-            transform: rotateY(140deg);
-        }
+    overflow-x: hidden;
+    overflow-y: auto;
 
-        /* A carta salta para a frente do usuário com efeito elástico */
-        .envelope.aberto .carta {
-            transform: translateZ(100px) scale(1.02);
-            opacity: 1;
-            z-index: 4;
-        }
+    padding: 30px 15px;
+}
 
-        /* Botão de Disparo */
-        .btn-abrir {
-            padding: 16px 45px;
-            font-size: 1.2rem;
-            font-family: 'Segoe UI', sans-serif;
-            font-weight: 600;
-            color: #11141a;
-            background-color: var(--cor-botao);
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 10px 25px rgba(156, 136, 255, 0.4);
-            transition: all 0.3s ease;
-        }
 
-        .btn-abrir:hover {
-            background-color: #f5f6fa;
-            color: #11141a;
-            box-shadow: 0 15px 30px rgba(255, 255, 255, 0.2);
-            transform: translateY(-3px);
-        }
+/* ============================= */
+/* JANELA 3D */
+/* ============================= */
 
-        .btn-abrir:active {
-            transform: translateY(1px);
-        }
-        .comunhao{width: 300px;
-        height: 300px;
-        position: relative;
-        bottom: 30px;
-        margin-left: 20px;
-       
+.janela-3d {
+
+    perspective: 1500px;
+
+    width: var(--largura-convite);
+
+    /*
+    Mantém a proporção original:
+    700 x 450
+    */
+    aspect-ratio: 700 / 450;
+
+    margin-bottom: 40px;
+
+    position: relative;
+}
+
+
+/* ============================= */
+/* ENVELOPE */
+/* ============================= */
+
+.envelope {
+
+    width: 100%;
+    height: 100%;
+
+    background-color: var(--cor-envelope);
+
+    position: relative;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 40px 70px rgba(243, 218, 117, 0.6);
+
+    transform-style: preserve-3d;
+
+    overflow: visible;
+}
+
+
+/* ============================= */
+/* ABAS */
+/* ============================= */
+
+.aba {
+
+    position: absolute;
+
+    top: 0;
+
+    width: 50%;
+    height: 100%;
+
+    box-sizing: border-box;
+
+    transition:
+        transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+
+    z-index: 3;
+
+    box-shadow:
+        0 0 15px rgba(0, 0, 0, 0.3);
+
+    backface-visibility: hidden;
+}
+
+
+/* LADO ESQUERDO */
+
+.aba-esquerda {
+
+    left: 0;
+
+    background-color: var(--cor-aba-esquerda);
+
+    border-radius: 12px 0 0 12px;
+
+    transform-origin: left center;
+
+    border-right: 1px solid white;
+
+}
+
+
+/* LADO DIREITO */
+
+.aba-direita {
+
+    right: 0;
+
+    background-color: var(--cor-aba-direita);
+
+    border-radius: 0 12px 12px 0;
+
+    transform-origin: right center;
+
+    border-left: 1px solid white;
+}
+
+
+/* ============================= */
+/* LINHA DECORATIVA */
+/* ============================= */
+
+.aba::after {
+
+    content: '';
+
+    position: absolute;
+
+    top: 20px;
+    bottom: 20px;
+
+    width: 2px;
+
+    background: rgba(22, 22, 22, 0.1);
+}
+
+
+.aba-esquerda::after {
+    right: 20px;
+}
+
+
+.aba-direita::after {
+    left: 20px;
+}
+
+
+/* ============================= */
+/* TÍTULO DA CAPA */
+/* ============================= */
+
+.aba h1 {
+
+    text-align: center;
+
+    margin-top: 25px;
+
+    color: rgba(249, 230, 83, 0.982);
+
+    font-family: Garamond, Georgia, serif;
+
+    font-size: clamp(20px, 3vw, 36px);
+
+    line-height: 1.1;
+}
+
+
+/* ============================= */
+/* IMAGEM DA COMUNHÃO */
+/* ============================= */
+
+.comunhao {
+
+    display: block;
+
+    width: 43%;
+
+    max-width: 300px;
+
+    height: auto;
+
+    aspect-ratio: 1 / 1;
+
+    object-fit: contain;
+
+    margin: 0 auto;
+
+    transform: translateY(-10px);
+}
+
+
+/* ============================= */
+/* NOME PABLO */
+/* ============================= */
+
+.aba-esquerda h2 {
+
+    text-align: center;
+
+    margin: -20px 0 0;
+
+    color: rgba(249, 230, 83, 0.982);
+
+    font-family: Garamond, Georgia, serif;
+
+    font-size: clamp(25px, 4vw, 42px);
+}
+
+
+/* ============================= */
+/* TEXTO DA DIREITA */
+/* ============================= */
+
+.texto2 {
+
+    text-align: justify;
+
+    margin: 50px 30px 0;
+
+    font-size: clamp(12px, 1.8vw, 18px);
+
+    line-height: 1.45;
+
+    color: #111;
+}
+
+
+/* ============================= */
+/* CARTA INTERNA */
+/* ============================= */
+
+.carta {
+
+    position: absolute;
+
+    top: 5.5%;
+    left: 5%;
+
+    width: 90%;
+    height: 89%;
+
+    background-color: var(--cor-carta);
+
+    background-image:
+        linear-gradient(
+            rgba(240, 240, 240, 0.5) 1px,
+            transparent 1px
+        );
+
+    background-size: 100% 30px;
+
+    box-shadow:
+        inset 0 0 40px rgba(0, 0, 0, 0.05),
+        0 10px 20px rgba(0, 0, 0, 0.3);
+
+    border-radius: 8px;
+
+    padding: clamp(15px, 4vw, 40px);
+
+    transform:
+        translateZ(-50px)
+        scale(0.9);
+
+    opacity: 0;
+
+    transition:
+        transform 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s,
+        opacity 0.8s ease 0.4s;
+
+    z-index: 1;
+
+    text-align: center;
+
+    overflow: hidden;
+}
+
+
+/* ============================= */
+/* TÍTULO DA CARTA */
+/* ============================= */
+
+.carta h1 {
+
+    color: #000;
+
+    font-size: clamp(18px, 4vw, 40px);
+
+    margin: 0 0 10px;
+
+    letter-spacing: clamp(1px, 0.4vw, 3px);
+
+    line-height: 1.1;
+}
+
+
+/* ============================= */
+/* DIVISOR */
+/* ============================= */
+
+.carta .divisor {
+
+    width: clamp(60px, 15vw, 100px);
+
+    height: 2px;
+
+    background-color: var(--cor-detalhe);
+
+    margin: 15px auto;
+}
+
+
+/* ============================= */
+/* FOTO */
+/* ============================= */
+
+.foto {
+
+    display: block;
+
+    width: clamp(65px, 12vw, 100px);
+
+    height: clamp(65px, 12vw, 100px);
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 4px solid var(--cor-detalhe);
+
+    margin: 10px auto;
+}
+
+
+/* ============================= */
+/* TEXTO PRINCIPAL */
+/* ============================= */
+
+.texto3 {
+
+    color: #000;
+
+    font-size: clamp(12px, 2vw, 20px);
+
+    line-height: 1.35;
+
+    margin: 10px auto;
+}
+
+
+/* ============================= */
+/* INFORMAÇÕES */
+/* ============================= */
+
+.texto4 {
+
+    color: #000;
+
+    font-size: clamp(11px, 1.6vw, 17px);
+
+    line-height: 1.35;
+
+    margin: 7px auto;
+
+    max-width: 90%;
+}
+
+
+/* ============================= */
+/* ANIMAÇÃO DE ABERTURA */
+/* ============================= */
+
+.envelope.aberto .aba-esquerda {
+
+    transform: rotateY(-140deg);
+}
+
+
+.envelope.aberto .aba-direita {
+
+    transform: rotateY(140deg);
+}
+
+
+.envelope.aberto .carta {
+
+    transform:
+        translateZ(100px)
+        scale(1.02);
+
+    opacity: 1;
+
+    z-index: 4;
+}
+
+
+/* ============================= */
+/* BOTÃO */
+/* ============================= */
+
+.btn-abrir {
+
+    padding:
+        clamp(12px, 2vw, 16px)
+        clamp(25px, 5vw, 45px);
+
+    font-size:
+        clamp(15px, 2vw, 20px);
+
+    font-family:
+        'Segoe UI',
+        sans-serif;
+
+    font-weight: 600;
+
+    color: #11141a;
+
+    background-color: var(--cor-botao);
+
+    border: none;
+
+    border-radius: 50px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 25px rgba(156, 136, 255, 0.4);
+
+    transition: all 0.3s ease;
+}
+
+
+.btn-abrir:hover {
+
+    background-color: #f5f6fa;
+
+    color: #11141a;
+
+    box-shadow:
+        0 15px 30px rgba(255, 255, 255, 0.2);
+
+    transform: translateY(-3px);
+}
+
+
+.btn-abrir:active {
+
+    transform: translateY(1px);
+}
+
+
+/* ================================================= */
+/* CELULAR */
+/* ================================================= */
+
+@media (max-width: 600px) {
+
+    body {
+
+        justify-content: center;
+
+        padding:
+            20px 10px 30px;
+
     }
-    h1{text-align: center;
-    margin-top: 20px;
-color: rgba(249, 230, 83, 0.982);
-font-family: garamond;}
 
-    .texto2{text-align: justify;
-        margin-left: 30px;
-        margin-right: 30px;
-        margin-top: 50px;
-    font-size: 18px;}
 
-    h2{text-align: center;
-        position: relative;
-        bottom: 40px;
-        color: rgba(249, 230, 83, 0.982);
-        font-family: garamond;
-        background-color: #f6f1cd;   
+    .janela-3d {
+
+        width: 94vw;
+
+        /*
+        O convite continua proporcional
+        */
+        aspect-ratio: 700 / 450;
+
+        margin-bottom: 30px;
+
+        /*
+        Reduz um pouco a perspectiva
+        para o celular
+        */
+        perspective: 900px;
     }
-    .foto{ 
-        width: 100px;
-        height: 100px;
-        object-fit: cover;
-        border-radius: 50%;
-        border: 4px solid rgba(243, 218, 117, 0.6);
-        position: relative;
-        left: 150px;
-       }
-       .texto3{position: relative;
-    bottom: 100px;
-    right: 100px;}
 
-    .texto4{position: relative;
-    bottom: 80px;}
+
+    .envelope {
+
+        border-radius: 8px;
+
+        box-shadow:
+            0 20px 35px rgba(243, 218, 117, 0.45);
+    }
+
+
+    /* CAPA ESQUERDA */
+
+    .aba h1 {
+
+        margin-top: 15px;
+
+        font-size: clamp(16px, 5vw, 25px);
+
+        letter-spacing: 0;
+    }
+
+
+    .comunhao {
+
+        width: 55%;
+
+        margin-top: 5px;
+
+        transform: none;
+    }
+
+
+    .aba-esquerda h2 {
+
+        margin-top: -5px;
+
+        font-size: clamp(20px, 6vw, 30px);
+    }
+
+
+    /* TEXTO DA DIREITA */
+
+    .texto2 {
+
+        margin:
+            25px 15px 0;
+
+        font-size:
+            clamp(9px, 2.7vw, 14px);
+
+        line-height: 1.35;
+    }
+
+
+    /* CARTA */
+
+    .carta {
+
+        top: 3%;
+        left: 3%;
+
+        width: 94%;
+        height: 94%;
+
+        padding:
+            12px 10px;
+
+        border-radius: 6px;
+
+        background-size:
+            100% 20px;
+    }
+
+
+    .carta h1 {
+
+        font-size:
+            clamp(15px, 5vw, 25px);
+
+        margin-bottom: 5px;
+    }
+
+
+    .carta .divisor {
+
+        margin: 8px auto;
+
+        width: 50px;
+    }
+
+
+    .foto {
+
+        width: clamp(45px, 15vw, 75px);
+
+        height: clamp(45px, 15vw, 75px);
+
+        border-width: 2px;
+
+        margin: 5px auto;
+    }
+
+
+    .texto3 {
+
+        font-size:
+            clamp(9px, 2.8vw, 14px);
+
+        margin: 5px auto;
+
+        line-height: 1.2;
+    }
+
+
+    .texto4 {
+
+        font-size:
+            clamp(8px, 2.4vw, 12px);
+
+        line-height: 1.2;
+
+        margin: 4px auto;
+
+        max-width: 95%;
+    }
+
+
+    /* BOTÃO */
+
+    .btn-abrir {
+
+        width: auto;
+
+        min-width: 180px;
+
+        padding:
+            12px 25px;
+
+        font-size: 16px;
+    }
+
+
+    /*
+    No celular a abertura fica
+    um pouco menor para não
+    sair completamente da tela.
+    */
+
+    .envelope.aberto .aba-esquerda {
+
+        transform:
+            rotateY(-115deg);
+    }
+
+
+    .envelope.aberto .aba-direita {
+
+        transform:
+            rotateY(115deg);
+    }
+
+
+    .envelope.aberto .carta {
+
+        transform:
+            translateZ(55px)
+            scale(1.01);
+    }
+
+}
+
+
+/* ================================================= */
+/* CELULARES MUITO PEQUENOS */
+/* ================================================= */
+
+@media (max-width: 380px) {
+
+    .janela-3d {
+
+        width: 96vw;
+
+        perspective: 700px;
+    }
+
+
+    .aba h1 {
+
+        font-size: 14px;
+
+        margin-top: 10px;
+    }
+
+
+    .comunhao {
+
+        width: 50%;
+    }
+
+
+    .aba-esquerda h2 {
+
+        font-size: 20px;
+    }
+
+
+    .texto2 {
+
+        font-size: 8px;
+
+        margin:
+            20px 10px 0;
+    }
+
+
+    .carta {
+
+        padding:
+            8px 6px;
+    }
+
+
+    .carta h1 {
+
+        font-size: 14px;
+    }
+
+
+    .texto3 {
+
+        font-size: 8px;
+    }
+
+
+    .texto4 {
+
+        font-size: 7.5px;
+
+        margin: 3px auto;
+    }
+
+
+    .btn-abrir {
+
+        min-width: 160px;
+
+        font-size: 14px;
+    }
+
+}
+
+
+/* ================================================= */
+/* NOTEBOOK / TELAS MENORES */
+/* ================================================= */
+
+@media (min-width: 601px) and (max-width: 1100px) {
+
+    .janela-3d {
+
+        width: 80vw;
+
+        max-width: 700px;
+    }
+
+
+    .texto2 {
+
+        font-size:
+            clamp(12px, 1.7vw, 18px);
+    }
+
+}
+
+
+/* ================================================= */
+/* ACESSIBILIDADE */
+/* ================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .aba,
+    .carta,
+    .btn-abrir {
+
+        transition: none;
+    }
+
+}
